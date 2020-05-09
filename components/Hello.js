@@ -6,28 +6,31 @@ import { updateRoot } from '../actions/noteAction.js'
 class Hello extends Component {
   constructor(props){
     super(props);
-    this.onUpdateRoot = onUpdateRoot.bind(this);
+     this.onUpdateRoot = onUpdateRoot.bind(this);
   }
- onUpdateRoot() {
+
+  onUpdateRoot() {
     this.props.onUpdateRoot('B');
   }
+
+
 render(){
   return(
     <div>
     <h1>Hello!{state}</h1>
-    <button onClick={this.onUpdateRoot}>onUpdateRoot</button>
-    <h1>{this.props.root}</h1>
+    <button onClick={this.onUpdateRoot}></button>
+    <h1>{this}</h1>
     </div>
   )
 }
 }
 
 const mapStateToProps = state => ({
-  root: state
+  root: state.root
 })
 
 const mapActionsToProps = {
-  onUpdateRoot : updateRoot
+   onUpdateRoot : updateRoot
 }
 
 export default connect(mapStateToProps,
