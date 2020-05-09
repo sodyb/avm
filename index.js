@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Hello from './Hello';
+import Hello from './components/Hello';
 import './style.css';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: 'React'
-    };
-  }
+// import default css
+import './var.css'
 
-  render() {
-    return (
-      <div>
-        <Hello name={this.state.name} />
-        <p>
-          Start editing to see some magic happen :)
-        </p>
-      </div>
-    );
-  }
-}
+// import redux
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
 
-render(<App />, document.getElementById('root'));
+//import reducers
+import { noteReducer } from './reducers/noteReducer.js'
+
+const store = createStore(noteReducer,
+{root:'C'}
+//for redux devtools
++  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+
+// ReactDom render
+render(<Provider store={store}>
+  <Hello />
+  </Provider>,
+  document.getElementById('root')
+  );
